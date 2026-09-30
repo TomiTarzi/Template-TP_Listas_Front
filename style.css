@@ -5,5 +5,26 @@
 }
 
 .comida-container {
-  /* Estilos para el contenedor de la lista */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+.comida-container article{
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  width: 260px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
 }
