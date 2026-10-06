@@ -1,6 +1,7 @@
 /*
     Cargar comidas en memoria desde el JSON
 */
+/*
 fetch('./data/comidas.json')          // Ruta al archivo JSON
   .then(response => response.json())  // Convertir la respuesta en JSON
   .then(data => {                     // Aquí tienes acceso al JSON en formato de objeto JS
@@ -11,7 +12,7 @@ fetch('./data/comidas.json')          // Ruta al archivo JSON
   .catch(error => {                   // Manejo de errores al leer el archivo JSON
     console.error('Error al leer el archivo JSON:', error);
   });
-
+*/
 let comidas = [
   {
     "nombre": "Asado",
@@ -73,36 +74,56 @@ let comidas = [
     "provincia": "Entre Ríos",
     "ingredientes": ["Harina", "Agua", "Sal", "Grasa"]
   }
-]
+];
 
 const container = document.getElementById('comidaContainer');
-const formcomidanueva= document.getElementById('Agregar Comida');
-function mostrarComidas(){
-  for(let i=0; i< comidas.length;i++){
-    comidaCointeiner.innerHTML +=
-    `
-    <article class="card">
-      <h2>${tarjeta[i].nombre}</h2>
-      <p>${tarjeta[i].provincia}</p>
-      <span class="categoria">${tarjeta[i].categoria}</span>
-    </article>
-    `
-  }
+const formcomidanueva = document.getElementById('agregarComida');
+
+function mostrarComidasConForEach() {
+  container.innerHTML = ""; // Limpia el contenedor antes de renderizar
+  
+  comidas.forEach(tarjeta => {
+    container.innerHTML += `
+      <article class="card">
+        <h2>${tarjeta.nombre}</h2>
+        <p>${tarjeta.provincia}</p>
+        <span class="categoria">${tarjeta.categoria}</span>
+        <ul>
+          ${tarjeta.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join("")}
+        </ul>
+      </article>
+    `;
+  });
 }
 
-function mostrarComidasConForEach(){
-  comidas.forEach(tarjeta =>{
-    container.innerHTML +=
-    `
-    <article class="card">
-      <h2>${tarjeta.nombre}</h2>
-      <p>${tarjeta.provincia}</p>
-      <span class="categoria">${tarjeta.categoria}</span>
-    </article>
-    `
-  })
-}
-mostrarComidasConForEach()
-formcomidanueva.addEventListener("submit",(e)=>{
-alert("Comida nueva recibida"+ e.targety.nombre.value)
-})
+mostrarComidasConForEach();
+formcomidanueva.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const nuevoNombre = e.target.nombre.value.trim();
+  const nuevaCategoria = e.target.categoria.value.trim();
+  const nuevaProvincia = e.target.provincia.value.trim();
+  const ingredientesInput = e.target.ingredientes.value;
+
+  if (!nuevoNombre || !nuevaCategoria || !nuevaProvincia) {
+    alert("Por favor, completá los campos principales.");
+    return;
+  }
+
+  const listaIngredientes = ingredientesInput
+    .split(",")
+    .map(ingrediente => ingrediente.trim())
+    .filter(ingrediente => ingrediente !== "");
+
+  const nuevaComida = {
+    nombre: nuevoNombre,
+    categoria: nuevaCategoria,
+    provincia: nuevaProvincia,
+    ingredientes: listaIngredientes
+  };
+
+  comidas.push(nuevaComida);
+  mostrarComidasConForEach();
+
+  e.target.reset();
+});
