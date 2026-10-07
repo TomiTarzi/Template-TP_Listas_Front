@@ -74,7 +74,7 @@ form input {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-form button[type="submit"] {
+form button {
   background-color: #ff8c00;
   color: #ffffff;
   padding: 12px;
