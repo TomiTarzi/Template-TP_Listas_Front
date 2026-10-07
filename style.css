@@ -1,7 +1,7 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0px;
 }
 
 .comida-container {
@@ -10,12 +10,42 @@
   gap: 16px;
   padding: 16px;
 }
-.comida-container article{
+
+.comida-container article {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   width: 260px;
 }
+
+.comida-container article h2 {
+  color: #000000;
+  margin-bottom: 4px;
+}
+
+.comida-container article p {
+  color: #666666;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.comida-container article .categoria {
+  color: #ff8c00;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.comida-container article ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.comida-container article ul li {
+  font-size: 0.9rem;
+  color: #333333;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -27,4 +57,63 @@ form {
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-family: sans-serif;
+}
+
+form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: -8px; 
+}
+
+form input {
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form input:focus {
+  border-color: #ff8c00;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+}
+
+form button[type="submit"] {
+  background-color: #ff8c00;
+  color: #ffffff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #e07b00;
+}
+
+form button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+.btn-reset {
+  background-color: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-reset:hover {
+  background-color: #dc3545;
+  color: #ffffff;
 }

@@ -80,14 +80,14 @@ const container = document.getElementById('comidaContainer');
 const formcomidanueva = document.getElementById('agregarComida');
 
 function mostrarComidasConForEach() {
-  container.innerHTML = ""; // Limpia el contenedor antes de renderizar
+  container.innerHTML = ""; 
   
   comidas.forEach(tarjeta => {
     container.innerHTML += `
       <article class="card">
+      <span class="categoria">${tarjeta.categoria}</span>
         <h2>${tarjeta.nombre}</h2>
         <p>${tarjeta.provincia}</p>
-        <span class="categoria">${tarjeta.categoria}</span>
         <ul>
           ${tarjeta.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join("")}
         </ul>
@@ -103,14 +103,14 @@ formcomidanueva.addEventListener("submit", (e) => {
   const nuevoNombre = e.target.nombre.value.trim();
   const nuevaCategoria = e.target.categoria.value.trim();
   const nuevaProvincia = e.target.provincia.value.trim();
-  const ingredientesInput = e.target.ingredientes.value;
+  const nuevosingredientes = e.target.ingredientes.value;
 
   if (!nuevoNombre || !nuevaCategoria || !nuevaProvincia) {
     alert("Por favor, completá los campos principales.");
     return;
   }
 
-  const listaIngredientes = ingredientesInput
+  const listaIngredientes = nuevosingredientes
     .split(",")
     .map(ingrediente => ingrediente.trim())
     .filter(ingrediente => ingrediente !== "");
