@@ -84,3 +84,23 @@ form button {
   cursor: pointer;
   margin-top: 10px;
 }
+.search-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-container input:focus {
+  border-color: #ff8c00;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.2);
+}

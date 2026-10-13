@@ -79,13 +79,13 @@ let comidas = [
 const container = document.getElementById('comidaContainer');
 const formcomidanueva = document.getElementById('agregarComida');
 
-function mostrarComidasConForEach() {
-  container.innerHTML = ""; 
+function mostrarComidasConForEach(listaComidas) {
+  container.innerHTML = "";
   
-  comidas.forEach(tarjeta => {
+  listaComidas.forEach(tarjeta => {
     container.innerHTML += `
       <article class="card">
-      <span class="categoria">${tarjeta.categoria}</span>
+        <span class="categoria">${tarjeta.categoria}</span>
         <h2>${tarjeta.nombre}</h2>
         <p>${tarjeta.provincia}</p>
         <ul>
@@ -95,25 +95,46 @@ function mostrarComidasConForEach() {
     `;
   });
 }
+const buscador=document.getElementById("buscador")
+  const filtroCategoria=document.getElementById("filtroCategoria")
+  const filtroProvincia=document.getElementById("filtroProvincia")
 
-mostrarComidasConForEach();
+function filtrar(){
+  const comidasfiltradas=comidas.filter(comida=>{
+  return comida.categoria.includes(filtroCategoria.value)
+        & comida.provincia.includes(filtroProvincia.value)
+  })
+  mostrarcomidas(comidasfiltradas)
+}
+function buscar(){
+  const texto=buscador.value.tolowercase() 
+  (comida=>{
+  return comida.categoria.includes(filtroCategoria.value)
+        & comida.provincia.includes(filtroProvincia.value)
+        comida.categoria.includes(filtroCategoria.value)
+        & comida.provincia.includes(filtroProvincia.value)
+  })
+  mostrarcomidas(comidasfiltradas)
+}
+mostrarComidasConForEach(comidas);
+
 formcomidanueva.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const nuevoNombre = e.target.nombre.value.trim();
   const nuevaCategoria = e.target.categoria.value.trim();
   const nuevaProvincia = e.target.provincia.value.trim();
-  const nuevosingredientes = e.target.ingredientes.value;
+  const ingredientesInput = e.target.ingredientes.value;
 
   if (!nuevoNombre || !nuevaCategoria || !nuevaProvincia) {
-    alert("Por favor, completá los campos principales.");
+    alert("Por favor, completá todos los campos.");
     return;
   }
 
-  const listaIngredientes = nuevosingredientes
+  const listaIngredientes = ingredientesInput
     .split(",")
-    .map(ingrediente => ingrediente.trim())
-    .filter(ingrediente => ingrediente !== "");
+    .map(ing => ing.trim())
+    .filter(ing => ing !== "");
 
   const nuevaComida = {
     nombre: nuevoNombre,
@@ -121,9 +142,14 @@ formcomidanueva.addEventListener("submit", (e) => {
     provincia: nuevaProvincia,
     ingredientes: listaIngredientes
   };
+  filtroCategoria.addEventListener("change",filtrar)
+  filtroProvincia.addEventListener("change",filtrar)
+  buscador.addEventListener("input",buscar)
 
   comidas.push(nuevaComida);
-  mostrarComidasConForEach();
+  localStorage.setItem("comidas", JSON.stringify(comidas));
 
+  mostrarComidasConForEach(comidas);
+  
   e.target.reset();
 });
