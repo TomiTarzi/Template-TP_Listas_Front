@@ -78,6 +78,9 @@ let comidas = [
 
 const container = document.getElementById('comidaContainer');
 const formcomidanueva = document.getElementById('agregarComida');
+const buscador = document.getElementById("buscador");
+const filtroCategoria = document.getElementById("filtroCategoria");
+const filtroProvincia = document.getElementById("filtroProvincia");
 
 function mostrarComidasConForEach(listaComidas) {
   container.innerHTML = "";
@@ -95,27 +98,29 @@ function mostrarComidasConForEach(listaComidas) {
     `;
   });
 }
-const buscador=document.getElementById("buscador")
-  const filtroCategoria=document.getElementById("filtroCategoria")
-  const filtroProvincia=document.getElementById("filtroProvincia")
 
 function filtrar(){
-  const comidasfiltradas=comidas.filter(comida=>{
-  return comida.categoria.includes(filtroCategoria.value)
-        & comida.provincia.includes(filtroProvincia.value)
-  })
-  mostrarcomidas(comidasfiltradas)
+  const comidasfiltradas = comidas.filter(comida => {
+    return comida.categoria.includes(filtroCategoria.value)
+      && comida.provincia.includes(filtroProvincia.value)
+  });
+  mostrarComidasConForEach(comidasfiltradas);
 }
+
 function buscar(){
-  const texto=buscador.value.tolowercase() 
-  (comida=>{
-  return comida.categoria.includes(filtroCategoria.value)
-        & comida.provincia.includes(filtroProvincia.value)
-        comida.categoria.includes(filtroCategoria.value)
-        & comida.provincia.includes(filtroProvincia.value)
-  })
-  mostrarcomidas(comidasfiltradas)
+  const texto = buscador.value.toLowerCase(); 
+  const comidasfiltradas = comidas.filter(comida => {
+    return comida.nombre.toLowerCase().includes(texto)
+      && comida.categoria.includes(filtroCategoria.value)
+      && comida.provincia.includes(filtroProvincia.value);
+  });
+  mostrarComidasConForEach(comidasfiltradas);
 }
+
+filtroCategoria.addEventListener("change", filtrar);
+filtroProvincia.addEventListener("change", filtrar);
+buscador.addEventListener("input", buscar);
+
 mostrarComidasConForEach(comidas);
 
 formcomidanueva.addEventListener("submit", (e) => {
@@ -142,9 +147,6 @@ formcomidanueva.addEventListener("submit", (e) => {
     provincia: nuevaProvincia,
     ingredientes: listaIngredientes
   };
-  filtroCategoria.addEventListener("change",filtrar)
-  filtroProvincia.addEventListener("change",filtrar)
-  buscador.addEventListener("input",buscar)
 
   comidas.push(nuevaComida);
   localStorage.setItem("comidas", JSON.stringify(comidas));
