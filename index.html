@@ -7,59 +7,62 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <header>
-      <div class="search-container">
-        <label for="buscador">Buscar:</label>
-        <input type="text" id="buscador" placeholder="Escribí el nombre de la comida...">
-      </div>
-      <div class="filters-container">
-        <div>
-          <label for="filtroCategoria">Categoría:</label>
-          <select id="filtroCategoria">
-            <option value="">Todas las categorías</option>
-            <option value="Parrilla">Parrilla</option>
-            <option value="Horno">Horno</option>
-            <option value="Guiso">Guiso</option>
-            <option value="Frito">Frito</option>
-          </select>
-        </div>
+    <header class="header">
+        <div class="controls-container">
+            <input type="text" id="buscador" placeholder="Nombre de la comida">
+            <input type="text" id="buscadorIngrediente" placeholder="Ingrediente">
+            
+            <select id="filtroCategoria">
+                <option value="">Todas las categorías</option>
+                <option value="Parrilla">Parrilla</option>
+                <option value="Horno">Horno</option>
+                <option value="Guiso">Guiso</option>
+                <option value="Frito">Frito</option>
+            </select>
 
-        <div>
-          <label for="filtroProvincia">Provincia:</label>
-          <select id="filtroProvincia">
-            <option value="">Todas las provincias</option>
-            <option value="Buenos Aires">Buenos Aires</option>
-            <option value="Tucumán">Tucumán</option>
-            <option value="Salta">Salta</option>
-            <option value="Jujuy">Jujuy</option>
-            <option value="Córdoba">Córdoba</option>
-            <option value="Santa Fe">Santa Fe</option>
-            <option value="Entre Ríos">Entre Ríos</option>
-          </select>
+            <select id="filtroProvincia">
+                <option value="">Todas las provincias</option>
+                <option value="Buenos Aires">Buenos Aires</option>
+                <option value="Tucumán">Tucumán</option>
+                <option value="Salta">Salta</option>
+                <option value="Jujuy">Jujuy</option>
+                <option value="Córdoba">Córdoba</option>
+                <option value="Santa Fe">Santa Fe</option>
+                <option value="Entre Ríos">Entre Ríos</option>
+            </select>
         </div>
-      </div>
     </header>
 
-    <main class="comida-container" id="comidaContainer">
-    </main>     
+    <main class="main-layout">
+        <section class="comida-container" id="comidaContainer">
+        </section>
 
-    <section class="addFood">
-      <form id="agregarComida">
-        <label for="nombre">Nombre de la comida</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre de la comida" required>
-      
-        <label for="categoria">Categoría</label>
-        <input type="text" id="categoria" name="categoria" placeholder="Categoría de la comida">
-      
-        <label for="provincia">Provincia</label>
-        <input type="text" id="provincia" name="provincia" placeholder="Provincia de la comida">
-      
-        <label for="ingredientes">Ingredientes</label>
-        <input type="text" id="ingredientes" name="ingredientes" placeholder="Ingredientes de la Comida">
-      
-        <button type="submit">Agregar Comida</button>
-      </form>
-    </section>
+        <section class="add-food-section">
+            <form id="agregarComida">
+                <div class="form-group">
+                    <label for="nombre">Nombre de la comida</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Locro, Asado..." required>
+                </div>
+              
+                <div class="form-group">
+                    <label for="categoria">Categoría</label>
+                    <input type="text" id="categoria" name="categoria" placeholder="Ej. Guiso, Parrilla..." required>
+                </div>
+              
+                <div class="form-group">
+                    <label for="provincia">Provincia</label>
+                    <input type="text" id="provincia" name="provincia" placeholder="Ej. Salta, Córdoba..." required>
+                </div>
+              
+                <div class="form-group">
+                    <label for="ingredientes">Ingredientes</label>
+                    <input type="text" id="ingredientes" name="ingredientes" placeholder="Separados por coma (Ej: Carne, Sal)" required>
+                </div>
+              
+                <button type="submit">Agregar Comida</button>
+            </form>
+        </section>
+    </main>
 
     <script type="module" src="./main.js"></script>
 </body>
