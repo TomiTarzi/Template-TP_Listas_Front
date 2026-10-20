@@ -1,4 +1,4 @@
-let comidas = JSON.parse(localStorage.getItem("comidas")) || [
+let comidas = [
   {
     "nombre": "Asado",
     "categoria": "Parrilla",
